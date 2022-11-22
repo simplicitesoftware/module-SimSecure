@@ -106,7 +106,7 @@
      "item": {
       "sys_code": "USE_GIT",
       "sys_value": "yes",
-      "sys_value2": null,
+      "sys_value2": "no",
       "sys_type": "PRV",
       "sys_desc": "Use GIT interface?",
       "row_module_id__mdl_name": "SimSecure"
