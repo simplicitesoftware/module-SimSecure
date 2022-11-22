@@ -1,0 +1,191 @@
+{
+ "object": "Module",
+ "userkey": "SimSecure",
+ "item": {
+  "mdl_name": "SimSecure",
+  "mdl_prefix": "sec",
+  "mdl_version": "1",
+  "mdl_type": "T",
+  "mdl_url": null,
+  "mdl_comment": "Secure parameters for Simplicité\n====================\n\nThis modules does the following changes to system parameters for improved security:\n- improve passwords: MD5 -> salted SHA-512\n- improve default HTTP headers\n- imposes a max upload size on files\n- deactivates user impersonation feature\n- closes optional endpoints:\n  - /api (and tester)\n  - /io (and tester)\n  - /git\n  - /maven\n  - /health\n\nThe change in hashing algorithm will render all current passwords unusable. After importing and **before** clearing the cache, you should import the associated dataset to update designer's password to `Ch4ngePassw0rd!`\n\n**NB: Correct system parameters configuration is one of the aspects of Simplicité's security, the other aspects are just as important, please check the [security documentation](https://docs.simplicite.io/documentation/security.md).**"
+ },
+ "links": [
+  {
+   "object": "SystemParam",
+   "label": "System parameters",
+   "icon": "img/system/system_param",
+   "field": "row_module_id",
+   "list": [
+    {
+     "object": "SystemParam",
+     "userkey": "HASH_PASSWORD",
+     "item": {
+      "sys_code": "HASH_PASSWORD",
+      "sys_value": "MD5:HEX",
+      "sys_value2": "SHA-512:HEX",
+      "sys_type": "PRV",
+      "sys_desc": "Password hashing algorithm and encoding: `<algorithm>:<encoding>` or `none` for no password hashing.\n\n- Algorithm values: `MD5`, `SHA-1`, `SHA-256`, `SHA-512`\n- Encoding values: `HEX` (hexadecimal) or `BASE64` (base 64)\n\n**Warning**: Hashing algorithm and encoding must be consistent with configured authentication module.",
+      "row_module_id__mdl_name": "SimSecure"
+     }
+    },
+    {
+     "object": "SystemParam",
+     "userkey": "HTTP_HEADERS",
+     "item": {
+      "sys_code": "HTTP_HEADERS",
+      "sys_value": "{}",
+      "sys_value2": "{\n    \"Content-Security-Policy\": \"default-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:\",\n    \"Strict-Transport-Security\": \"max-age=31536000\",\n    \"X-Content-Type-Options\": \"nosniff\",\n    \"X-Frame-Options\": \"SAMEORIGIN\",\n    \"X-XSS-Protection\": \"0\",\n    \"Referrer-Policy\": \"strict-origin-when-cross-origin\",\n    \"Cache-Control\": \"no-cache\"\n}",
+      "sys_type": "PRV",
+      "sys_desc": "Custom HTTP headers to add to **all** responses, e.g.\n\n```json\n{\n\t\"Content-Security-Policy\": \"default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' apis.google.com *.gstatic.com *.googleapis.com; style-src 'self' 'unsafe-inline' *.gstatic.com *.googleapis.com; img-src 'self' data: *.gstatic.com *.googleapis.com *.simplicite.io github.com raw.githubusercontent.com sonarcloud.io; font-src 'self' data: *.gstatic.com *.googleapis.com; connect-src 'self' *.gstatic.com *.googleapis.com; frame-src 'self' *.google.com;\",\n\t\"X-Frame-Options\": \"SAMEORIGIN\",\n\t\"X-XSS-Protection\": \"1; mode=block\"\n}\n```",
+      "row_module_id__mdl_name": "SimSecure"
+     }
+    },
+    {
+     "object": "SystemParam",
+     "userkey": "MAX_UPLOAD_SIZE",
+     "item": {
+      "sys_code": "MAX_UPLOAD_SIZE",
+      "sys_value": "100",
+      "sys_value2": "100",
+      "sys_type": "APP",
+      "sys_desc": "Upload file: transfer size limitation in megabytes (Mb).",
+      "row_module_id__mdl_name": "SimSecure"
+     }
+    },
+    {
+     "object": "SystemParam",
+     "userkey": "SALT_PASSWORD",
+     "item": {
+      "sys_code": "SALT_PASSWORD",
+      "sys_value": "no",
+      "sys_value2": "yes",
+      "sys_type": "PRV",
+      "sys_desc": "Salted passwords ?",
+      "row_module_id__mdl_name": "SimSecure"
+     }
+    },
+    {
+     "object": "SystemParam",
+     "userkey": "USE_API",
+     "item": {
+      "sys_code": "USE_API",
+      "sys_value": "yes",
+      "sys_value2": "no",
+      "sys_type": "PRV",
+      "sys_desc": "Use API interface?",
+      "row_module_id__mdl_name": "SimSecure"
+     }
+    },
+    {
+     "object": "SystemParam",
+     "userkey": "USE_API_TESTER",
+     "item": {
+      "sys_code": "USE_API_TESTER",
+      "sys_value": "yes",
+      "sys_value2": "no",
+      "sys_type": "PRV",
+      "sys_desc": "Use API tester page?",
+      "row_module_id__mdl_name": "SimSecure"
+     }
+    },
+    {
+     "object": "SystemParam",
+     "userkey": "USE_CHANGE_USER",
+     "item": {
+      "sys_code": "USE_CHANGE_USER",
+      "sys_value": "yes",
+      "sys_value2": "no",
+      "sys_type": "PRV",
+      "sys_desc": "Allows the user to change login between his different connections",
+      "row_module_id__mdl_name": "SimSecure"
+     }
+    },
+    {
+     "object": "SystemParam",
+     "userkey": "USE_GIT",
+     "item": {
+      "sys_code": "USE_GIT",
+      "sys_value": "yes",
+      "sys_value2": null,
+      "sys_type": "PRV",
+      "sys_desc": "Use GIT interface?",
+      "row_module_id__mdl_name": "SimSecure"
+     }
+    },
+    {
+     "object": "SystemParam",
+     "userkey": "USE_HEALTH",
+     "item": {
+      "sys_code": "USE_HEALTH",
+      "sys_value": "yes",
+      "sys_value2": "no",
+      "sys_type": "PRV",
+      "sys_desc": "Use health check?",
+      "row_module_id__mdl_name": "SimSecure"
+     }
+    },
+    {
+     "object": "SystemParam",
+     "userkey": "USE_IO",
+     "item": {
+      "sys_code": "USE_IO",
+      "sys_value": "yes",
+      "sys_value2": "no",
+      "sys_type": "PRV",
+      "sys_desc": "Use I/O interface?",
+      "row_module_id__mdl_name": "SimSecure"
+     }
+    },
+    {
+     "object": "SystemParam",
+     "userkey": "USE_IO_TESTER",
+     "item": {
+      "sys_code": "USE_IO_TESTER",
+      "sys_value": "yes",
+      "sys_value2": "no",
+      "sys_type": "PRV",
+      "sys_desc": "Use I/O tester page?",
+      "row_module_id__mdl_name": "SimSecure"
+     }
+    },
+    {
+     "object": "SystemParam",
+     "userkey": "USE_MAVEN",
+     "item": {
+      "sys_code": "USE_MAVEN",
+      "sys_value": "yes",
+      "sys_value2": "no",
+      "sys_type": "PRV",
+      "sys_desc": "Use Maven repository?",
+      "row_module_id__mdl_name": "SimSecure"
+     }
+    }
+   ]
+  },
+  {
+   "object": "Dataset",
+   "label": "Datasets",
+   "icon": "img/color/file",
+   "field": "row_module_id",
+   "list": [{
+    "object": "Dataset",
+    "userkey": "SimSecure~DesignerPassword",
+    "item": {
+     "row_module_id__mdl_name": "SimSecure",
+     "dt_name": "DesignerPassword",
+     "dt_file": {
+      "path": "data/DesignerPassword.xml",
+      "size": 448,
+      "field": "dt_file",
+      "mime": "text/xml",
+      "name": "DesignerPassword.xml",
+      "id": "7059",
+      "object": "Dataset",
+      "rowid": "1"
+     },
+     "dt_desc": null
+    }
+   }]
+  }
+ ]
+}
